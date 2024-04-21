@@ -7,9 +7,21 @@
 
 .table_content {
   width: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  // flex-grow: 1;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
   box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.current p {
+  color: black;
+  font-weight: 450;
+}
+
+.not_current p {
+  color: rgb(175, 175, 175);
 }

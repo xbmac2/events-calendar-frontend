@@ -4,7 +4,7 @@ export interface CalendarDaysProps {
   props: Date;
 }
 
-const CalendarDays = () => {
+const CalendarDays = ({ openModal }) => {
   const theDate = new Date();
   const firstDayOfMonth = new Date(
     theDate.getFullYear(),
@@ -36,6 +36,7 @@ const CalendarDays = () => {
 
     currentDays.push(calendarDay);
   }
+
   return (
     <div>
       {/* <p>CalendarDays</p> */}
@@ -43,7 +44,16 @@ const CalendarDays = () => {
         {/* <p>{firstDayOfMonth.toDateString()}</p> */}
         {currentDays.map((day) => {
           return (
-            <div key={day.date.toDateString()} className={styles.calendar_day}>
+            <div
+              onClick={openModal}
+              key={day.date.toDateString()}
+              className={
+                `${styles.calendar_day}` +
+                (day.currentMonth
+                  ? ` ${styles.current}`
+                  : ` ${styles.not_current}`)
+              }
+            >
               <p>{day.number}</p>
             </div>
           );
