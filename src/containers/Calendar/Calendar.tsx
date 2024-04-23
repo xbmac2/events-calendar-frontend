@@ -9,11 +9,20 @@ const Calendar = ({ openModal }) => {
 
   const goPreviousMonth = () => {
     const prevMonthDate = new Date(
-      theDate.getFullYear(),
-      theDate.getMonth() - 1
+      theCurrentDate.getFullYear(),
+      theCurrentDate.getMonth() - 1
     );
     setTheCurrentDate(prevMonthDate);
     console.log(prevMonthDate);
+  };
+
+  const goNextMonth = () => {
+    const nextMonthDate = new Date(
+      theCurrentDate.getFullYear(),
+      theCurrentDate.getMonth() + 1
+    );
+    setTheCurrentDate(nextMonthDate);
+    console.log(nextMonthDate);
   };
   return (
     <div>
@@ -22,7 +31,7 @@ const Calendar = ({ openModal }) => {
         <h1>
           {months[theCurrentDate.getMonth()]} {theCurrentDate.getFullYear()}
         </h1>
-        <button>&#x2192;</button>
+        <button onClick={goNextMonth}>&#x2192;</button>
       </div>
       <div className={styles.weekdays_header}>
         {weekdays.map((weekday) => {
@@ -33,7 +42,7 @@ const Calendar = ({ openModal }) => {
           );
         })}
       </div>
-      <CalendarDays openModal={openModal} />
+      <CalendarDays theCurrentDate={theCurrentDate} openModal={openModal} />
     </div>
   );
 };
