@@ -1,4 +1,7 @@
+import { useContext } from "react";
+import EventCard from "../../components/EventCard/EventCard";
 import styles from "./CalendarDays.module.scss";
+import { AllEventsContext } from "../../context/AllEventsContextProvider";
 
 export interface CalendarDaysProps {
   theCurrentDate: Date;
@@ -6,6 +9,8 @@ export interface CalendarDaysProps {
 }
 
 const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
+  const { allEvents } = useContext(AllEventsContext);
+
   const theDate = theCurrentDate; //new Date();
   const firstDayOfMonth = new Date(
     theDate.getFullYear(),
@@ -55,7 +60,21 @@ const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
                   : ` ${styles.not_current}`)
               }
             >
-              <p>{day.number}</p>
+              <p>
+                {day.number}{" "}
+                {day.date
+                  .toLocaleDateString()
+                  .substring(0, 10)
+                  .replace(/\//g, "-")}
+              </p>
+              {allEvents?.map((event) => {
+                if (
+                  event.startDate.substring(0, 10) ===
+                  day.date.toISOString().substring(0, 10)
+                ) {
+                  return <EventCard key={event.id} />;
+                }
+              })}
             </div>
           );
         })}
