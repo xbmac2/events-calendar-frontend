@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import Form from "../Form/Form";
+//import styles from "./Modal.module.scss";
 
 interface ModalProps {
   isOpen: boolean;
@@ -41,6 +43,7 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
   return (
     <dialog ref={modalRef} onKeyDown={handleKeyDown}>
       <button onClick={handleCloseModal}>Close button</button>
+      <Form />
     </dialog>
   );
 };
