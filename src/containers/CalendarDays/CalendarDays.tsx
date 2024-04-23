@@ -2,7 +2,7 @@ import styles from "./CalendarDays.module.scss";
 
 export interface CalendarDaysProps {
   theCurrentDate: Date;
-  openModal: () => unknown;
+  openModal: (date: any) => unknown;
 }
 
 const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
@@ -46,7 +46,7 @@ const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
         {currentDays.map((day) => {
           return (
             <div
-              onClick={openModal}
+              onClick={() => openModal(day.date)}
               key={day.date.toDateString()}
               className={
                 `${styles.calendar_day}` +
