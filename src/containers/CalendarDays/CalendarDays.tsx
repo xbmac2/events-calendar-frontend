@@ -1,11 +1,12 @@
 import styles from "./CalendarDays.module.scss";
 
 export interface CalendarDaysProps {
-  props: Date;
+  theCurrentDate: Date;
+  openModal: () => unknown;
 }
 
-const CalendarDays = ({ openModal }) => {
-  const theDate = new Date();
+const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
+  const theDate = theCurrentDate; //new Date();
   const firstDayOfMonth = new Date(
     theDate.getFullYear(),
     theDate.getMonth(),
