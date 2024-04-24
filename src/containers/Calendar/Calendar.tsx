@@ -3,7 +3,7 @@ import { months, weekdays } from "../../helpers/calendar-helpers";
 import CalendarDays from "../CalendarDays/CalendarDays";
 import styles from "./Calendar.module.scss";
 
-const Calendar = ({ openModal }) => {
+const Calendar = ({ openModal, setModalType }) => {
   const theDate = new Date();
   const [theCurrentDate, setTheCurrentDate] = useState(theDate);
 
@@ -42,7 +42,11 @@ const Calendar = ({ openModal }) => {
           );
         })}
       </div>
-      <CalendarDays theCurrentDate={theCurrentDate} openModal={openModal} />
+      <CalendarDays
+        theCurrentDate={theCurrentDate}
+        openModal={openModal}
+        setModalType={setModalType}
+      />
     </div>
   );
 };

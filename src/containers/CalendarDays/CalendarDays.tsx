@@ -6,9 +6,14 @@ import { AllEventsContext } from "../../context/AllEventsContextProvider";
 export interface CalendarDaysProps {
   theCurrentDate: Date;
   openModal: (date: any) => unknown;
+  setModalType: (modalType: any) => unknown;
 }
 
-const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
+const CalendarDays = ({
+  theCurrentDate,
+  openModal,
+  setModalType,
+}: CalendarDaysProps) => {
   const { allEvents } = useContext(AllEventsContext);
 
   const theDate = theCurrentDate; //new Date();
@@ -51,7 +56,10 @@ const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
         {currentDays.map((day) => {
           return (
             <div
-              onClick={() => openModal(day.date)}
+              onClick={() => {
+                setModalType("form");
+                openModal(day.date);
+              }}
               key={day.date.toDateString()}
               className={
                 `${styles.calendar_day}` +
@@ -72,7 +80,15 @@ const CalendarDays = ({ theCurrentDate, openModal }: CalendarDaysProps) => {
                   event.startDate.substring(0, 10) ===
                   day.date.toISOString().substring(0, 10)
                 ) {
-                  return <EventCard key={event.id} />;
+                  return (
+                    <EventCard
+                      key={event.id}
+                      setModalType={setModalType}
+                      openModal={openModal}
+                      clickedDate={day.date}
+                      currentEvent={event}
+                    />
+                  );
                 }
               })}
             </div>

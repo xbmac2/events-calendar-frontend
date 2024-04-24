@@ -4,6 +4,8 @@ interface SelectedDateContextType {
   //dataForChildren: any;
   selectedDate: any;
   setSelectedDate: any;
+  eventViewing: any;
+  setEventViewing: any;
 }
 
 export const SelectedDateContext =
@@ -11,10 +13,13 @@ export const SelectedDateContext =
 
 const SelectedDateContextProvider = ({ children }) => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [eventViewing, setEventViewing] = useState(null);
 
   const dataForChildren = {
     selectedDate,
     setSelectedDate,
+    eventViewing,
+    setEventViewing,
   };
 
   return (

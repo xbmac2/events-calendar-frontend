@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import Form from "../Form/Form";
+import EventDetails from "../EventDetails/EventDetails";
 //import styles from "./Modal.module.scss";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  //kind: "form" | "eventDetails";
+  //chidlren: any;
 }
 
-const Modal = ({ isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, isOpen, onClose }: any) => {
   const [isModalOpen, setModalOpen] = useState(true);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
@@ -43,7 +46,9 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
   return (
     <dialog ref={modalRef} onKeyDown={handleKeyDown}>
       <button onClick={handleCloseModal}>Close button</button>
-      <Form />
+      {/* <Form handleCloseModal={handleCloseModal} /> */}
+      {children}
+      {/* <EventDetails /> */}
     </dialog>
   );
 };
